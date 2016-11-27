@@ -1,5 +1,7 @@
 package Services;
 
+import static Services.DateGenerator.randomDate;
+
 import Entities.AirBookingOffice;
 import Entities.Flight;
 import Entities.Ticket;
@@ -7,6 +9,8 @@ import res.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 
 public class AirBookingOfficeService implements IAirBookingOfficeService{
 
@@ -113,26 +117,20 @@ public class AirBookingOfficeService implements IAirBookingOfficeService{
         System.out.println();
     }
 
+    public void fillRandomFlights(int flightsCount) {
+        for (int i = 0; i < flightsCount; i++) {
+            _airBookOffice.getFlights().add(new Flight(i, "Name" + i, "From", "To", Math.abs(new Random().nextInt(10_000)), 10));
+        }
+    }
+
+    public void fillFlightWithTickets(Flight flight) {
+        for (int i = 0; i < flight.getMaxTicketsCount(); i++) {
+            flight.getTickets().add(new Ticket(i, flight, randomDate(), new Random().nextBoolean()));
+        }
+    }
+
+
     public static void main(String[] args) {
-        AirBookingOffice a = new AirBookingOffice();
-        IAirBookingOfficeService s = new AirBookingOfficeService(a);
-
-        a.fillRandomFlights(10);
-        s.outputFlights();
-
-        System.out.println(R.PARAFRAPHS_3 + "After ascending sorting: ");
-        s.sortFlightsByLength(true);
-        s.outputFlights();
-
-        System.out.println(R.PARAFRAPHS_3 + "After descending sorting: ");
-        s.sortFlightsByLength(false);
-        s.outputFlights();
-
-        s.outputAllSoldFlights();
-
-        s.outputSoldTickets();
-
-        s.outputPercantageOfSoldTicketsForEachFlight();
 
     }
 

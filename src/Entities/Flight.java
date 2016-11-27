@@ -1,7 +1,8 @@
 package Entities;
 
-import java.text.SimpleDateFormat;
+import static Services.DateGenerator.randomDate;
 import java.util.*;
+
 
 public class Flight implements Comparable{
 
@@ -27,32 +28,11 @@ public class Flight implements Comparable{
     public void fillFlightWithTickets() {
         for (int i = 0; i < getMaxTicketsCount(); i++) {
             tickets.add(new Ticket(i, this, randomDate(), new Random().nextBoolean()));
-        }        
+        }
     }
 
 
 
-    private Date randomDate() {
-        SimpleDateFormat dfDateTime  = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
-
-        int year = randBetween(1900, 2013);
-        int month = randBetween(0, 11);
-        int hour = randBetween(9, 22);
-        int min = randBetween(0, 59);
-        int sec = randBetween(0, 59);
-
-
-        GregorianCalendar gc = new GregorianCalendar(year, month, 1);
-        int day = randBetween(1, gc.getActualMaximum(gc.DAY_OF_MONTH));
-
-        gc.set(year, month, day, hour, min,sec);
-
-        return gc.getTime();
-    }
-
-    private static int randBetween(int start, int end) {
-        return start + (int)Math.round(Math.random() * (end - start));
-    }
 
     @Override
     public String toString() {

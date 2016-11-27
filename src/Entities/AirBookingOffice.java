@@ -2,7 +2,6 @@ package Entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class AirBookingOffice {
@@ -72,13 +71,4 @@ public class AirBookingOffice {
     public void set_flights(ArrayList<Flight> _flights) {
         this._flights = _flights;
     }
-
-
-    public void fillRandomFlights(int flightsCount) {
-        for (int i = 0; i < flightsCount; i++) {
-            _flights.add(new Flight(i, "Name" + i, "From", "To", Math.abs(new Random().nextInt(10_000)), 10));
-        }
-    }
-
-
 }

@@ -12,4 +12,6 @@ public interface IAirBookingOfficeService {
     void outputSoldTickets();
     void outputPercantageOfSoldTicketsForEachFlight();
     void outputFlights();
+    void fillRandomFlights(int countFligths);
+    void fillFlightWithTickets(Flight flight);
 }
